@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/estilos.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    {% block extrahead %}{% endblock %}
+    <title>Portfolio</title>
+</head>
+
+<body>
+    <div class="page-layout">
+        <header class="top-bar">
+            <nav class="top-nav-bar" role="navigation">
+                <ul>
+                    <li><a href="{% url 'portfolio:home' %}">Home</a></li>
+                    <li><a href="{% url 'portfolio:licenciatura' %}">Licenciatura</a></li>
+                    <li><a href="{% url 'portfolio:projetos' %}">Projetos</a></li>
+                    <li><a href="{% url 'portfolio:blog' %}">Blog</a></li>
+                    {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'portfolio:logout' %}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url 'portfolio:login' %}">Login</a></li>
+                    {% endif %}
+                </ul>
+                {% block header %}
+                {% endblock header %}
+            </nav>
+        </header>
+        <main class="main-body">
+            {% block main %}
+            {% endblock main %}
+        </main>
+        <footer class="bottom">ULHT, 2022</footer>
+    </div>
+</body>
+
+</html>

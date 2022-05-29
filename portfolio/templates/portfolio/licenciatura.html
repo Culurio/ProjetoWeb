@@ -1,0 +1,26 @@
+{% extends 'portfolio/layout.html' %}
+{% block header %}
+<div class="welcome-text">Licenciatura</div>
+{% endblock %}
+{% block main %}
+{% for cadeira in cadeiras %}
+<h2>Ano: {{cadeira.year}} </h2>
+<div class="subjects-box">
+    <div class="subject-image">
+
+    </div>
+    <div class="subjects-text">
+        <h3>{{cadeira.name}} | ano letivo: {{cadeira.school_year}}</h3>
+        <p>Topicos abordados:{{cadeira.topics}}</p>
+        <p>{{cadeira.teacher.objects.all}}</p>
+        {% for teacher in cadeira.teacher.all %}
+        <p>Professor: {{teacher.name}}</p>
+        {% endfor %}
+        {% for student in cadeira.students.all %}
+        <p>estudantes: {{student.name}}</p>
+        {% endfor %}
+        <p>etcs: {{cadeira.etcs}}</p>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

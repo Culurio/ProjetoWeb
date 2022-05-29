@@ -1,0 +1,44 @@
+  .home-container {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: stretch;
+    padding: 50px;
+    }
+    .home-container p {
+      padding-top: 40px;
+    }
+  .home-container>div {
+    display: flex;
+    flex: 1 0 30%;
+    font-size: 1vw;
+    justify-content: space-around;
+    border-radius: 20px;
+    height: 300px;
+    margin: 10px;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  
+  .home-container img {
+    height: 400px;
+  }
+
+  .contacts-container {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: stretch;
+    padding: 50px;
+    }
+
+    .contacts-container h2{
+      padding-left: 48vw;
+    }
+
+
+

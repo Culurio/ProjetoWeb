@@ -1,0 +1,40 @@
+<!-- home.html -->
+
+{% extends 'portfolio/layout.html' %}
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/home.css' %}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+{% block header %}
+{% load static %}
+<div class="welcome-text">Bem vindo ao meu portfolio</div>
+<!--<img src="{% static '/portfolio/images/claudio-photo.png' %}" alt="Banner Photo" height="120" width="120"> -->
+{% endblock %}
+{% block main %}
+<div class="home-container">
+    <div>
+        <img src="{% static '/portfolio/images/hero-image.png' %}" alt="Banner Photo">
+    </div>
+    <div>
+        <h2>Sobre mim:</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce condimentum pulvinar erat, nec porttitor arcu aliquet vel.
+             Vestibulum vel varius turpis, nec laoreet est. In maximus mauris ac ante malesuada volutpat.
+              Vestibulum hendrerit eros a condimentum tempus. Proin rhoncus leo lacus, eget feugiat lorem dapibus ut.
+               Proin vulputate ante in nisl vehicula, nec malesuada tortor congue. Nullam risus risus, vulputate sit amet neque vel,
+                tempus porttitor lacus. Nulla blandit mi nec tellus tincidunt rhoncus. Sed et metus non ex consectetur lacinia.
+                 Aliquam non bibendum lacus, a gravida risus. Etiam vitae ultricies quam. Integer justo ligula, porta sit amet sodales eu,
+                  molestie non erat. Nullam eu neque eget leo finibus finibus.
+        </p>
+    </div>
+</div>
+<div class="contacts-container">
+    <h2>Contactos:</h2>
+    <a href="https://github.com/Culurio"><i class="fa fa-github" style="font-size:50px;color:white;padding-left: 20px;"></i></a>
+    <a href="https://www.instagram.com/clurio_costa/"><i class="fa fa-instagram" style="font-size:50px;color:white;padding-left: 20px;"></i></i></a>
+    <a href="https://www.youtube.com/channel/UCTfTfOQJVHAq2dsGHl4uHyg"><i class="fa fa-youtube-play" style="font-size:50px;color:white;padding-left: 20px;"></i></a>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'portfolio/layout.html' %}
+{% block header %}
+<div class="welcome-text">Quizz-Time</div>
+{% endblock %}
+{% block main %}
+{% for quizz in quizzes%}
+    <p>Categoria: {{quizz}}</p>
+    {% for question in quizz.questions.all%}
+        <p>Pergunta: {{question}} ?</p>
+        {% for answers in question.answers.all%}
+            <ul>
+                <li>
+                    {{answers}}
+                </li>
+            </ul>
+        {% endfor %}
+    {% endfor %}
+{% endfor %}
+{% endblock %}

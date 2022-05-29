@@ -1,0 +1,41 @@
+{% extends 'portfolio/layout.html' %}
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/login.css' %}">
+{% endblock %}
+{% block header %}
+<div class="welcome-text">Blog</div>
+{% endblock %}
+{% block main %}
+
+{% for post in posts %}
+<li>{{ post.title }}
+    {{ post.author }}
+    {{ post.body }}
+    {{ post.post_date }}
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'portfolio:blog_edit' post.id %}"> Editar </a>
+    {% endif %}
+</li>
+{% endfor %}
+
+{% if request.user.is_authenticated %}
+<br>
+<hr style="height:5px;border-width:0;background-color:white">
+<form action="" method="POST">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a href="{% url 'portfolio:blog' %}" class="button">Cancelar</a>
+    <input type="submit" class="button" value="Criar">
+</form>
+<script>
+
+    var name = "{{ user.id }}"
+    document.getElementById("user").value = name;
+
+</script>
+
+{% endif %}
+
+{% endblock %}

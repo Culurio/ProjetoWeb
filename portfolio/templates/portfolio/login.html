@@ -1,0 +1,25 @@
+{% extends 'portfolio/layout.html' %}
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/login.css' %}">
+{% endblock %}
+{% block header %}
+<div class="welcome-text">Login</div>
+{% endblock %}
+{% block main %}
+{% if message %}
+<p> {{ message }} </p>
+{% endif %}
+<form action="{% url 'portfolio:login' %}" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="Username" style="height: 40px;" required name="username">
+    <br>
+    <input type="password" placeholder="Password" minlength="6" style="height: 40px;" required name="password">
+    <br>
+    <input access="false" type="checkbox" checked="checked">
+    <label>Lembrar</label>
+    <br>
+    <button class="button" style="vertical-align:middle" type="submit"><span>Login </span></button>
+    </div>
+</form>
+{% endblock %}

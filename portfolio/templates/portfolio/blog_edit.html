@@ -1,0 +1,19 @@
+{% extends 'portfolio/layout.html' %}
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/login.css' %}">
+{% endblock %}
+{% block header %}
+<div class="welcome-text">Edit Post</div>
+{% endblock %}
+{% block main %}
+<form action="{% url 'portfolio:blog_edit' post_id %}" method="POST">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <a class="button" href="{% url 'portfolio:blog' %}">Cancelar</a>
+    <a class="button" href="{% url 'portfolio:delete' post_id %}">Apagar</a>
+    <input type="submit" class="button" value="Criar">
+</form>
+{% endblock %}
