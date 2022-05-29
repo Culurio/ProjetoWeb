@@ -22,6 +22,7 @@
                     <li><a href="{% url 'portfolio:licenciatura' %}">Licenciatura</a></li>
                     <li><a href="{% url 'portfolio:projetos' %}">Projetos</a></li>
                     <li><a href="{% url 'portfolio:blog' %}">Blog</a></li>
+                    <li><a href="{% url 'portfolio:quizz' %}">Quizz</a></li>
                     {% if request.user.is_authenticated %}
                     <li><a href="{% url 'portfolio:logout' %}">Logout</a></li>
                     {% else %}
