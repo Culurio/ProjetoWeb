@@ -8,6 +8,7 @@ urlpatterns = [
     path('licenciatura', views.licenciatura_page_view, name='licenciatura'),
     path('projetos', views.projects_page_view, name='projetos'),
     path('blog', views.view_new_post, name='blog'),
+    path('add_fields', views.add_edit_fields, name='add_fields'),
     path('blog_edit/<int:post_id>', views.view_edit_post, name='blog_edit'),
     path('delete/<int:post_id>', views.view_delete_tarefa, name='delete'),
     path('quizz', views.view_quizz, name='quizz'),

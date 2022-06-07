@@ -29,7 +29,7 @@ class Project(models.Model):
 
     title = models.CharField(max_length=50,default='')
     description = models.CharField(max_length=500)
-    #image = models.ImageField()
+    image = models.ImageField(upload_to='pictures/', blank=True)
     year = models.IntegerField(default=0)
     github = models.URLField()
     video_url = models.URLField()
@@ -53,8 +53,9 @@ class Subject(models.Model):
         ])
     topics = models.CharField(max_length=100)
     students = models.ManyToManyField(Student, blank = True)
-    teacher = models.ManyToManyField(Teacher, blank = True)
-    #subject_project = models.OneToOneField(Project,on_delete=models.CASCADE,primary_key=True,)
+    teacher_theory = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    teacher_practice = models.ManyToManyField(Teacher, related_name='practice_teacher')
+    subject_project = models.OneToOneField(Project,on_delete=models.CASCADE,primary_key=True,)
 
     def __str__(self):
         return self.name
@@ -63,36 +64,20 @@ class Post(models.Model):
     title = models.CharField(max_length = 255)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
+    post_image = models.ImageField(upload_to='pictures/', blank=True)
     post_date = models.DateField(auto_now_add= True)
 
     def __str__(self):
         return self.title + ' from ' + str(self.author)
 
-
-class Answer(models.Model):
-    answer_text = models.CharField(max_length = 255)
-    is_correct = models.BooleanField(default=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.answer_text
-
-class Question(models.Model):
-    question_text = models.CharField(max_length = 255)
-    points = models.PositiveIntegerField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    answers = models.ManyToManyField(Answer)
-
-    def __str__(self):
-        return self.question_text
-
 class Quizz(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=255)
-    questions = models.ManyToManyField(Question)
+    name = models.CharField(max_length=20)    
+    surname = models.CharField(max_length=20)     
+    points = models.IntegerField()
+
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
         

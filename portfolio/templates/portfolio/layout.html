@@ -24,6 +24,9 @@
                     <li><a href="{% url 'portfolio:blog' %}">Blog</a></li>
                     <li><a href="{% url 'portfolio:quizz' %}">Quizz</a></li>
                     {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'portfolio:add_fields' %}">Add/Edit</a></li>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
                     <li><a href="{% url 'portfolio:logout' %}">Logout</a></li>
                     {% else %}
                     <li><a href="{% url 'portfolio:login' %}">Login</a></li>

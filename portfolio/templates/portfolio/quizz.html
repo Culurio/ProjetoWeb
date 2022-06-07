@@ -3,17 +3,46 @@
 <div class="welcome-text">Quizz-Time</div>
 {% endblock %}
 {% block main %}
-{% for quizz in quizzes%}
-    <p>Categoria: {{quizz}}</p>
-    {% for question in quizz.questions.all%}
-        <p>Pergunta: {{question}} ?</p>
-        {% for answers in question.answers.all%}
-            <ul>
-                <li>
-                    {{answers}}
-                </li>
-            </ul>
-        {% endfor %}
-    {% endfor %}
-{% endfor %}
+<form method="POST" action="quizz">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Info do usuário</legend>
+        <p>Nome: <input type="text" id="user_fname" name="user_fname" required></p>
+        <p>Apelido: <input type="text" id="user_lname" name="user_lname" required></p>
+        <p>Email: <input type="text" id="email" name="email" required></p>
+    </fieldset>
+
+    <fieldset>
+        <legend>Perguntas</legend>
+        <p>Quem fez esta pagina ?<br>
+            <input type="radio" id="claudio" name="creator_name" value="claudio">
+            <label for="claudio">Cláudio Costa</label>
+            <input type="radio" id="cristiano" name="creator_name" value="cristiano">
+            <label for="cristiano">Cristiano Ronaldo</label>
+            <input type="radio" id="krika" name="creator_name" value="krika">
+            <label for="krika">Krika</label>
+        </p>
+
+        <fieldset>
+            <label for="date">Cidade do criador da pagina</label><br>
+            <input type="text" id="cname" placeholder="PSST é o barreiro"><br>
+
+            <label for="framework">Nome da Framework utilizada</label><br>
+            <input type="text" id="framework" name="framework"><br>
+
+            <label for="page_color">Escolhe a cor desta pagina</label><br>
+            <input type="color" id="page_color" name="page_color" value="#f6b73c"><br>
+
+            <label for="barra">Quanto gostas desta pagina:</label><br>
+            <input type="range" id="barra" name="barra" min="0" max="10"><br>
+
+            <input type="submit" value="Submit">
+        </fieldset>
+</form>
+<br>
+
+{% if quizz is null %}
+{% load static %}
+<img src="{% static 'portfolio/images/grafico.png' %}">
+{% endif %}
 {% endblock %}
