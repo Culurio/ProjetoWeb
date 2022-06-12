@@ -3,7 +3,6 @@ from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from multiprocessing import AuthenticationError
-import datetime
 from portfolio.forms import *
 from matplotlib import pyplot as plt
 
@@ -11,12 +10,7 @@ from matplotlib import pyplot as plt
 from portfolio.models import *
 
 def home_page_view(request):
-    local = 'Lisboa'
-
-    context = {
-        'local': local,
-    }
-    return render(request, 'portfolio/home.html', context)
+    return render(request, 'portfolio/home.html')
 
 def licenciatura_page_view(request):
     context = {
