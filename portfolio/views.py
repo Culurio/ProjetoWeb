@@ -4,7 +4,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from multiprocessing import AuthenticationError
 from portfolio.forms import *
-from matplotlib import pyplot as plt
 
 
 from portfolio.models import *
@@ -174,15 +173,6 @@ def view_delete_tarefa(request, post_id):
     return HttpResponseRedirect(reverse('portfolio:blog'))
 
 
-def desenha_grafico_resultados():
-    participants = sorted(Quizz.objects.all(), key=lambda t: t.points, reverse=True)     
-    names = []     
-    points = []     
-    for pt in participants:         
-        names.append(pt.name +" "+pt.surname)         
-        points.append(pt.points)     
-        plt.barh(names, points)     
-        plt.savefig("portfolio/static/portfolio/images/grafico.png", bbox_inches='tight')
 
 
 def calculate_quizz(request):
@@ -212,7 +202,6 @@ def view_quizz(request):
         p = calculate_quizz(request)
         r = Quizz(name=n, surname=a, points=p)
         r.save()
-        desenha_grafico_resultados()
     return render(request, 'portfolio/quizz.html',context)
 
 
