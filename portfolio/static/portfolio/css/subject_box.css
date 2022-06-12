@@ -1,0 +1,30 @@
+.subjects-box{
+    display: flex;
+    background-color: #151b25;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 10px;
+    margin: 5px;
+}
+
+.subjects-box>div {
+    display: flex;
+    flex: 1 0 20%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+    background-color: #6b1423;
+    border-radius: 30px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 5px 5px 15px #311725;
+  }
+
+a{
+    color: white;
+}
+
+a:hover{
+    color: black;
+}

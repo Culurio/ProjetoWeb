@@ -1,8 +1,101 @@
 {% extends 'portfolio/layout.html' %}
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/quizz.css' %}">
+<link rel="stylesheet" href="{% static 'portfolio/css/subject_box.css' %}">
+<script src="{% static 'portfolio/js/weather.js' %}" defer></script>
+<script src="{% static 'portfolio/js/random_fact.js' %}" defer></script>
+{% endblock %}
 {% block header %}
 <div class="welcome-text">Quizz-Time</div>
 {% endblock %}
 {% block main %}
+
+<div class="container">
+    <div class="titulo">Tecnologias Usadas</div>
+    <ul>
+        <h1>Front-End</h1>
+        <li><a href="#CSS">CSS</a></li>
+        <li><a href="#Js">Javascript</a></li>
+        <li><a href="#HTML">HTML</a></li>
+    </ul>
+    <br>
+    <ul>
+        <h1>Back-End</h1>
+        <li><a href="#Django">Django</a></li>
+    </ul>
+    <br>
+    <ul>
+        <h1>Estrutura</h1>
+        <li>HOME</li>
+        <li>LICENCIATURA</li>
+        <li>PROJETOS</li>
+        <li>BLOG</li>
+        <li>WEB (Estamos aqui)</li>
+    </ul>
+</div>
+
+<div>
+    <div class="titulo">Diagrama DER</div>
+    <p>Este diagrama não representa o site é só para ocupar espaço</p>
+    <img src="{% static '/portfolio/images/diagrama-fake.png' %}" alt="Fake diagrame">
+</div>
+
+
+<div class="subjects-box">
+    <h1>FRONT-END</h1>
+    <div>
+        <h1>CSS</h1>
+        <p id="CSS">
+            Cascading Style Sheets is a style sheet language used for describing the
+            presentation of a document written in a markup language such as HTML.
+        </p>
+    </div>
+    <div>
+        <h1>HTML</h1>
+        <p id="HTML">
+            The HyperText Markup Language or HTML is the standard markup language for documents designed to be displayed
+            in a web browser.
+        </p>
+    </div>
+    <div>
+        <h1>Javascript</h1>
+        <p id="Js">
+            JavaScript, often abbreviated JS, is a programming language that is one of the core technologies of the
+            World Wide Web,
+            alongside HTML and CSS.
+        </p>
+    </div>
+</div>
+<br>
+<div class="subjects-box">
+    <h1>BACK-END</h1>
+    <div>
+        <h1>Django</h1>
+        <p id="Django">
+            Django is a Python-based web framework, free and open-source, that follows the model–template–views
+            architectural pattern.
+        </p>
+    </div>
+</div>
+
+<br>
+
+<div class="subjects-box">
+    <h1>API</h1>
+    <div>
+        <h1>Temperatura Maxima: <span id="max_temp">00.0</span></h1>
+        <h1>Temperatura Minima: <span id="min_temp">00.0</span></h1>
+    </div>
+    <div>
+        <h1>Facto do dia: 
+            <span id="fact"></span>
+        </h1>
+    </div>
+</div>
+
+<br>
+
 <form method="POST" action="quizz">
     {% csrf_token %}
     <fieldset>

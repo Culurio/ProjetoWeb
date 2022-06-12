@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from .models import Post, Project
+from .models import *
 
 class PostForm(ModelForm):
 
@@ -28,7 +28,17 @@ class PostForm(ModelForm):
             })
         }
 
-class ProjectsForm(ModelForm):
+class TfcForm(ModelForm):
     class Meta:
-        model = Project
+        model = Project_big
+        fields = '__all__'
+
+class SubjectForm(ModelForm):
+    class Meta:
+        model = Subject
+        fields = '__all__'
+
+class ProjectSmallForm(ModelForm):
+    class Meta:
+        model = Project_small
         fields = '__all__'

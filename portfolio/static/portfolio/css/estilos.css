@@ -61,10 +61,10 @@ body {
 }
 
 footer {  
+  position:fixed;
   color:white;
   padding: 0 10px;
   bottom: 0;
-  position:absolute;
   right: 0%;
 }
 

@@ -8,31 +8,119 @@ from portfolio.forms import *
 from matplotlib import pyplot as plt
 
 
-from portfolio.models import Subject, Teacher, Project, Post
+from portfolio.models import *
 
 def home_page_view(request):
-    agora = datetime.datetime.now()
     local = 'Lisboa'
 
     context = {
-        'hora': agora.hour,
         'local': local,
     }
     return render(request, 'portfolio/home.html', context)
 
 def licenciatura_page_view(request):
-    agora = datetime.datetime.now()
-    local = 'Lisboa'
     context = {
-        'cadeiras':Subject.objects.all().order_by('year','semester')[:3],
+        'cadeiras':Subject.objects.all().order_by('rank','year','semester')[:3],
     }
     return render(request, 'portfolio/licenciatura.html',context)
 
+@login_required
+def view_edit_subject(request, post_id):
+
+    post = Subject.objects.get(id=post_id)
+    form = SubjectForm(request.POST or None,instance=post)
+
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('portfolio:licenciatura'))
+
+    context = {'form': form, 'post_id': post_id}
+    return render(request, 'portfolio/licenciatura_edit.html', context)
+
+@login_required
+def view_add_subject(request):
+    form = SubjectForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('portfolio:licenciatura'))
+
+    context = {'form': form,}
+    return render(request, 'portfolio/licenciatura_add.html', context)
+
+@login_required
+def view_delete_subject(request, project_id):
+
+    subject = Subject.objects.get(id=project_id)
+    subject.delete()
+    return HttpResponseRedirect(reverse('portfolio:licenciatura'))
+
+@login_required
+def view_edit_project(request, post_id):
+
+    post = Project_small.objects.get(id=post_id)
+    form = ProjectSmallForm(request.POST or None,instance=post)
+
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('portfolio:projetos'))
+
+    context = {'form': form, 'post_id': post_id}
+    return render(request, 'portfolio/project_edit.html', context)
+
+@login_required
+def view_add_project(request):
+    form = ProjectSmallForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('portfolio:projetos'))
+
+    context = {'form': form,}
+    return render(request, 'portfolio/project_add.html', context)
+
+@login_required
+def view_delete_project(request, project_id):
+
+    project_small = Project_small.objects.get(id=project_id)
+    project_small.delete()
+    return HttpResponseRedirect(reverse('portfolio:projetos'))
+
+@login_required
+def view_edit_tfc(request, post_id):
+
+    post = Project_big.objects.get(id=post_id)
+    form = TfcForm(request.POST or None,instance=post)
+
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('portfolio:projetos'))
+
+    context = {'form': form, 'post_id': post_id}
+    return render(request, 'portfolio/tfc_edit.html', context)
+
+@login_required
+def view_add_tfc(request):
+    form = TfcForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('portfolio:projetos'))
+
+    context = {'form': form,}
+    return render(request, 'portfolio/tfc_add.html', context)
+
+@login_required
+def view_delete_tfc(request, project_id):
+
+    project_big = Project_big.objects.get(id=project_id)
+    project_big.delete()
+    return HttpResponseRedirect(reverse('portfolio:projetos'))
+
 def projects_page_view(request):
-    agora = datetime.datetime.now()
-    local = 'Lisboa'
     context = {
-        'projects':Project.objects.all(),
+        'projects_small':Project_small.objects.all()[:3],
+        'projects_big':Project_big.objects.all()[:6],
     }
     return render(request, 'portfolio/projects.html',context)
 
@@ -71,7 +159,7 @@ def view_new_post(request):
     }
     return render(request, 'portfolio/blog.html', context)
 
-
+@login_required
 def view_edit_post(request, post_id):
 
     post = Post.objects.get(id=post_id)
@@ -84,7 +172,7 @@ def view_edit_post(request, post_id):
     context = {'form': form, 'post_id': post_id}
     return render(request, 'portfolio/blog_edit.html', context)
 
-
+@login_required
 def view_delete_tarefa(request, post_id):
 
     post = Post.objects.get(id=post_id)
@@ -109,6 +197,7 @@ def calculate_quizz(request):
     city = request.POST.get('cname')
     framework = request.POST.get('framework')
     page_color = request.POST.get('page_color')
+    print(page_color)
     if creator == "claudio" :
         score += 10
     if city == "Barreiro" :
@@ -119,7 +208,7 @@ def calculate_quizz(request):
         score += 15
     return score
 
-@login_required
+
 def view_quizz(request):
     quizz = Quizz.objects.all()
     context = {'quizz': quizz}
@@ -132,16 +221,11 @@ def view_quizz(request):
         desenha_grafico_resultados()
     return render(request, 'portfolio/quizz.html',context)
 
-@login_required
-def add_edit_fields(request):
-    
-    project = ProjectsForm(request.POST or None, request.FILES)
 
-    if project.is_valid():
-        project.save()
-        return HttpResponseRedirect(reverse('portfolio:blog'))
+def api_page_view(request):
+    local = 'Lisboa'
 
-    context = {'form': project,
-        'posts': Post.objects.all().order_by('post_date')
+    context = {
+        'local': local,
     }
-    return render(request, 'portfolio/add_fields.html', context)
+    return render(request, 'portfolio/api.html', context)

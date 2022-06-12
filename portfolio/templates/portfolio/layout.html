@@ -6,8 +6,10 @@
     <meta charset="UTF-8">
     {% load static %}
     <link rel="stylesheet" href="{% static 'portfolio/css/estilos.css' %}">
+    <script src="{% static 'portfolio/js/time.js' %}" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/x-icon" href="{% static 'portfolio/images/icon.png' %}">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     {% block extrahead %}{% endblock %}
     <title>Portfolio</title>
@@ -22,10 +24,8 @@
                     <li><a href="{% url 'portfolio:licenciatura' %}">Licenciatura</a></li>
                     <li><a href="{% url 'portfolio:projetos' %}">Projetos</a></li>
                     <li><a href="{% url 'portfolio:blog' %}">Blog</a></li>
-                    <li><a href="{% url 'portfolio:quizz' %}">Quizz</a></li>
-                    {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'portfolio:add_fields' %}">Add/Edit</a></li>
-                    {% endif %}
+                    <li><a href="{% url 'portfolio:quizz' %}">Web</a></li>
+                    <li><a href="{% url 'portfolio:api' %}">API</a></li>
                     {% if request.user.is_authenticated %}
                     <li><a href="{% url 'portfolio:logout' %}">Logout</a></li>
                     {% else %}
@@ -40,7 +40,15 @@
             {% block main %}
             {% endblock main %}
         </main>
-        <footer class="bottom">ULHT, 2022</footer>
+        <footer class="bottom">
+            <span>ULHT, 2022</span>
+            <span id="hours">00</span>
+            <span>:</span>
+            <span id="minutes">00</span>
+            <span>:</span>
+            <span id="seconds">00</span>
+            <span id="session">AM</span>
+        </footer>
     </div>
 </body>
 

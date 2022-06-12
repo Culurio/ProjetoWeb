@@ -9,10 +9,10 @@
 {% block main %}
 
 {% for post in posts %}
-<li>{{ post.title }}
-    {{ post.author }}
-    {{ post.body }}
-    {{ post.post_date }}<br>
+<li>Title: {{ post.title }}
+    Author: {{ post.author }}<br>
+    {{ post.body|slice:":50" }}<br>
+    <small>Created: {{ post.post_date }}</small><br>
     {% if post.post_image %}
 
     <img src="{{ post.post_image.url }}" style="height: 200px ;width: 200px ">

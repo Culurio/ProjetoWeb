@@ -25,17 +25,41 @@ class Student(Person,models.Model):
     portfolio = models.URLField()
     github = models.URLField()
 
+class Skills(models.Model):
+    name = models.CharField(max_length=50)
+    popularity = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
 class Project(models.Model):
 
     title = models.CharField(max_length=50,default='')
     description = models.CharField(max_length=500)
     image = models.ImageField(upload_to='pictures/', blank=True)
     year = models.IntegerField(default=0)
+    school_year = models.IntegerField(default=0)
     github = models.URLField()
     video_url = models.URLField()
-    tech = models.CharField(max_length=200)
-    skills = models.CharField(max_length=500)
     participants = models.ForeignKey(Student, on_delete=models.CASCADE)
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        return self.name
+
+class Project_small(Project,models.Model):
+    tech = models.CharField(max_length=200)
+    skills =  models.ManyToManyField(Skills, related_name='teacher')
+    teacher = models.ManyToManyField(Teacher, related_name='teacher')
+
+    def __str__(self):
+        return self.title
+
+class Project_big(Project,models.Model):
+    report = models.URLField()
+    teacher = models.ManyToManyField(Teacher, related_name='advisor')
 
     def __str__(self):
         return self.title
@@ -55,7 +79,7 @@ class Subject(models.Model):
     students = models.ManyToManyField(Student, blank = True)
     teacher_theory = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     teacher_practice = models.ManyToManyField(Teacher, related_name='practice_teacher')
-    subject_project = models.OneToOneField(Project,on_delete=models.CASCADE,primary_key=True,)
+    subject_project = models.OneToOneField(Project_small,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

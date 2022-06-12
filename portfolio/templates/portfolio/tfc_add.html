@@ -1,0 +1,17 @@
+{% extends 'portfolio/layout.html' %}
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/login.css' %}">
+{% endblock %}
+{% block header %}
+<div class="welcome-text">Add TFC</div>
+{% endblock %}
+{% block main %}
+<form action="" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a class="button" href="{% url 'portfolio:projetos' %}">Cancelar</a>
+    <input type="submit" class="button" value="Criar">
+</form>
+{% endblock %}

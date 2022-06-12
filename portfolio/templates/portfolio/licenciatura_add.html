@@ -4,15 +4,14 @@
 <link rel="stylesheet" href="{% static 'portfolio/css/login.css' %}">
 {% endblock %}
 {% block header %}
-<div class="welcome-text">Add or edit DataBase</div>
+<div class="welcome-text">Add Subject</div>
 {% endblock %}
 {% block main %}
 <form action="" method="POST" enctype="multipart/form-data">
 
     {% csrf_token %}
     {{ form.as_p }}
-    <a href="{% url 'portfolio:blog' %}" class="button">Cancelar</a>
+    <a class="button" href="{% url 'portfolio:licenciatura' %}">Cancelar</a>
     <input type="submit" class="button" value="Criar">
 </form>
-
 {% endblock %}

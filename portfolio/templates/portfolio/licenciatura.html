@@ -1,26 +1,43 @@
 {% extends 'portfolio/layout.html' %}
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/subject_box.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
 {% block header %}
 <div class="welcome-text">Licenciatura</div>
 {% endblock %}
 {% block main %}
-{% for cadeira in cadeiras %}
-<h2>Ano: {{cadeira.year}} </h2>
 <div class="subjects-box">
-    <div class="subject-image">
-
-    </div>
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'portfolio:subject_add'%}"> Adicionar </a>
+    {% endif %}
+    {% for cadeira in cadeiras %}
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'portfolio:subject_edit' cadeira.id%}"> Edit </a>
+    {% endif %}
+    <h2>Ano: {{cadeira.year}} | Semestre: {{cadeira.semester}} </h2>
     <div class="subjects-text">
         <h3>{{cadeira.name}} | ano letivo: {{cadeira.school_year}}</h3>
         <p>Topicos abordados:{{cadeira.topics}}</p>
-        <p>{{cadeira.teacher.objects.all}}</p>
-        {% for teacher in cadeira.teacher.all %}
-        <p>Professor: {{teacher.name}}</p>
+        <p>Professor Teorica: {{cadeira.teacher_theory}}</p>
+        <p>Professor Pratica:
+            {% for teacher in cadeira.teacher_practice.all %}
+            {{teacher.name}}
+        </p>
         {% endfor %}
-        {% for student in cadeira.students.all %}
-        <p>estudantes: {{student.name}}</p>
-        {% endfor %}
+        <p>Projeto Realizado:
+            <a href="{{cadeira.subject_project.github}}">{{cadeira.subject_project}}</a>
+        </p>
         <p>etcs: {{cadeira.etcs}}</p>
+        <p>
+            {% with ''|center:cadeira.rank as range %}
+            {% for num in range%}
+            <span class="fa fa-star checked"></span>
+            {% endfor %}
+            {% endwith %}
+        </p>
     </div>
+    {% endfor %}
 </div>
-{% endfor %}
 {% endblock %}
