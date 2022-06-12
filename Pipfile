@@ -5,6 +5,11 @@ name = "pypi"
 
 [packages]
 django = "*"
+environs = {version = "==8.0.0", extras = ["django"]}
+psycopg2-binary = "*"
+whitenoise = "==5.1.0"
+django-cloudinary-storage = "*"
+gunicorn = "==19.9.0"
 
 [dev-packages]
 
