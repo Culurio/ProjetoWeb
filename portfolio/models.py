@@ -1,10 +1,8 @@
 from pyexpat import model
-from tkinter import CASCADE
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
 from datetime import datetime, date
-from tkinter import CASCADE
 
 # Create your models here.
 
