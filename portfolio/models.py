@@ -1,7 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
-from datetime import datetime, date
 
 # Create your models here.
 
@@ -34,6 +33,7 @@ class Project(models.Model):
 
     title = models.CharField(max_length=50,default='')
     description = models.CharField(max_length=500)
+    image = models.ImageField(upload_to='pictures/', blank=True)
     year = models.IntegerField(default=0)
     school_year = models.IntegerField(default=0)
     github = models.URLField()
@@ -62,7 +62,7 @@ class Project_big(Project,models.Model):
         return self.title
 
 class Subject(models.Model):
-    id = models.BigIntegerField(primary_key = True)
+
     name = models.CharField(max_length=30)
     year = models.IntegerField(default=0)
     etcs = models.IntegerField(default=0)
@@ -85,6 +85,7 @@ class Post(models.Model):
     title = models.CharField(max_length = 255)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
+    post_image = models.ImageField(upload_to='pictures/', blank=True)
     post_date = models.DateField(auto_now_add= True)
 
     def __str__(self):
@@ -99,6 +100,3 @@ class Quizz(models.Model):
     def __str__(self):
         return self.name
 
-
-        
-    

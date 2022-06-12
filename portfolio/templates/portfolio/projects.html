@@ -19,6 +19,13 @@
 {% endif %}
 <h2>Ano: {{project.year}} </h2>
 <div class="subjects-box">
+    {% if project.image %}
+
+    <div class="subject-image">
+        <img src="{{ project.image.url }}" style="height: 200px ;width: 200px ">
+    </div>
+
+    {% endif %}
     <div class="subjects-text">
         <h3>{{project.title}} | ano letivo: {{project.school_year}}</h3>
         <p>Topicos abordados:{{project.description}}</p>
@@ -47,6 +54,13 @@
 <a href="{% url 'portfolio:tfc_edit' project.id %}"> Editar </a>
 <h2>Ano: {{project.year}} </h2>
 <div class="subjects-box">
+    {% if project.image %}
+
+    <div class="subject-image">
+        <img src="{{ project.image.url }}" style="height: 200px ;width: 200px ">
+    </div>
+
+    {% endif %}
     <div class="subjects-text">
         <h3>{{project.title}} | ano letivo: {{project.school_year}}</h3>
         <p>Topicos abordados:{{project.description}}</p>
