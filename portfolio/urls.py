@@ -20,7 +20,6 @@ urlpatterns = [
     path('blog_edit/<int:post_id>', views.view_edit_post, name='blog_edit'),
     path('delete/<int:post_id>', views.view_delete_tarefa, name='delete_blog'),
     path('quizz', views.view_quizz, name='quizz'),
-    path('api', views.api_page_view, name='api'),
     path('login', views.login_view, name='login'),
     path('logout', views.view_logout, name='logout'),
 ]

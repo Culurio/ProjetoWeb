@@ -7,10 +7,10 @@
 <script src="{% static 'portfolio/js/random_fact.js' %}" defer></script>
 {% endblock %}
 {% block header %}
-<div class="welcome-text">Quizz-Time</div>
+<div class="welcome-text">WEB</div>
 {% endblock %}
 {% block main %}
-
+<h1><a href="#quizz">Clica para fazeres o quizz</a></h1>
 <div class="container">
     <div class="titulo">Tecnologias Usadas</div>
     <ul>
@@ -88,13 +88,14 @@
         <h1>Temperatura Minima: <span id="min_temp">00.0</span></h1>
     </div>
     <div>
-        <h1>Facto do dia: 
+        <h1>Facto do dia:
             <span id="fact"></span>
         </h1>
     </div>
 </div>
-
-<br>
+<div style="margin-bottom: 100px ;">
+    <br id="quizz">
+</div>
 
 <form method="POST" action="quizz">
     {% csrf_token %}
