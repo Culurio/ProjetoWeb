@@ -24,19 +24,19 @@
   grid-area: bot;
 }
 
-.welcome-text{
+.welcome-text {
   font-weight: bold;
   font-size: 30px;
   padding-top: 30px;
   text-align: center;
   padding-left: 300px;
-  color:white;
+  color: white;
 }
 
 body {
-  background-color:#202938;
+  background-color: #202938;
   display: grid;
-  min-height: 100vh; 
+  min-height: 100vh;
   margin: 0;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
@@ -60,9 +60,9 @@ body {
   background-color: grey;
 }
 
-footer {  
-  position:fixed;
-  color:white;
+footer {
+  position: fixed;
+  color: white;
   padding: 0 10px;
   bottom: 0;
   right: 0%;
@@ -85,4 +85,3 @@ nav ul li {
   display: inline-block;
   transition: 0.7s all;
 }
-
