@@ -1,7 +1,8 @@
 # Create your views here.
-from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import redirect, render, HttpResponseRedirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from multiprocessing import AuthenticationError
 from portfolio.forms import *
 
@@ -9,7 +10,11 @@ from portfolio.forms import *
 from portfolio.models import *
 
 def home_page_view(request):
-    return render(request, 'portfolio/home.html')
+    context = {
+        'skills':Skills.objects.all(),
+        'hobbies':Hobbies.objects.all()
+    }
+    return render(request, 'portfolio/home.html',context)
 
 def licenciatura_page_view(request):
     context = {
@@ -117,6 +122,17 @@ def projects_page_view(request):
     }
     return render(request, 'portfolio/projects.html',context)
 
+def register_view(request):
+    form = UserCreationForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('portfolio:login'))
+
+    context = {'form': form,
+    }
+    return render(request, 'portfolio/register.html', context)
+
 def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -172,9 +188,6 @@ def view_delete_tarefa(request, post_id):
     post.delete()
     return HttpResponseRedirect(reverse('portfolio:blog'))
 
-
-
-
 def calculate_quizz(request):
     score = 0
     creator = request.POST.get('creator_name')
@@ -195,7 +208,9 @@ def calculate_quizz(request):
 
 def view_quizz(request):
     quizz = Quizz.objects.all()
-    context = {'quizz': quizz}
+    news = News.objects.all()
+    context = {'quizz': quizz,
+    'news':news}
     if request.method == 'POST':
         n = request.POST.get('user_fname')
         a = request.POST.get('user_lname')
@@ -204,6 +219,17 @@ def view_quizz(request):
         r.save()
     return render(request, 'portfolio/quizz.html',context)
 
+def view_add_news(request):
+    
+    form = NewsForm(request.POST or None, request.FILES)
+
+    if form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('portfolio:quizz'))
+
+    context = {'form': form,
+    }
+    return render(request, 'portfolio/news_add.html', context)
 
 def api_page_view(request):
     local = 'Lisboa'

@@ -14,3 +14,7 @@ a{
 .container{
     margin-bottom:10vh;
 }
+
+fieldset {
+    background-color: #151b25;
+  }

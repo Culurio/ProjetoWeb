@@ -3,6 +3,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'portfolio/css/quizz.css' %}">
 <link rel="stylesheet" href="{% static 'portfolio/css/subject_box.css' %}">
+<link rel="stylesheet" href="{% static 'portfolio/css/news.css' %}">
 <script src="{% static 'portfolio/js/weather.js' %}" defer></script>
 <script src="{% static 'portfolio/js/random_fact.js' %}" defer></script>
 {% endblock %}
@@ -94,6 +95,24 @@
         </h1>
     </div>
 </div>
+
+{% if request.user.is_authenticated %}
+<a href="{% url 'portfolio:news'%}"> Adicionar </a>
+{% endif %}
+<div class="subjects-box2">
+    {% for new in news %}
+    <figure class="snip1347">
+        <img src={{new.image_url}} alt="news image" />
+        <div class="date">{{new.date}}</div>
+        <figcaption>
+            <h2>{{new.name}}</h2>
+            <p>{{new.description}}</p>
+            <a href={{new.link}} class="read-more">Read More</a>
+        </figcaption>
+    </figure>
+    {% endfor %}
+</div>
+
 <div style="margin-bottom: 100px ;">
     <br id="quizz">
 </div>

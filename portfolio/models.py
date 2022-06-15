@@ -22,9 +22,38 @@ class Student(Person,models.Model):
     portfolio = models.URLField()
     github = models.URLField()
 
+class SkillType(models.Model):
+    name = name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
 class Skills(models.Model):
     name = models.CharField(max_length=50)
-    popularity = models.IntegerField(default=0)
+    description = models.CharField(max_length=300)
+    level = models.IntegerField(default=0, validators=[
+            MaxValueValidator(10),
+            MinValueValidator(0)
+        ])
+    type =  models.ManyToManyField(SkillType, related_name='skills')
+
+    def __str__(self):
+        return self.name
+
+class Hobbies(models.Model):
+
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.name
+
+class News(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=300)
+    date = models.DateField(auto_now_add=False, auto_now=False, null=True, blank=True)
+    image_url = models.URLField()
+    link = models.URLField()
 
     def __str__(self):
         return self.name
@@ -48,7 +77,7 @@ class Project(models.Model):
 
 class Project_small(Project,models.Model):
     tech = models.CharField(max_length=200)
-    skills =  models.ManyToManyField(Skills, related_name='teacher')
+    skills =  models.ManyToManyField(Skills, related_name='skills')
     teacher = models.ManyToManyField(Teacher, related_name='teacher')
 
     def __str__(self):
@@ -63,7 +92,6 @@ class Project_big(Project,models.Model):
 
 class Subject(models.Model):
     
-    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30)
     year = models.IntegerField(default=0)
     etcs = models.IntegerField(default=0)
@@ -100,4 +128,3 @@ class Quizz(models.Model):
 
     def __str__(self):
         return self.name
-

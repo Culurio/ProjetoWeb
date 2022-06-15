@@ -1,0 +1,16 @@
+{% extends 'portfolio/layout.html' %}
+{% block extrahead %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/login.css' %}">
+{% endblock %}
+{% block header %}
+<div class="welcome-text">Login</div>
+{% endblock %}
+{% block main %}
+<form action="" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="button" value="Login">
+</form>
+{% endblock %}

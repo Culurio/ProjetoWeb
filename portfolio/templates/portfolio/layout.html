@@ -30,6 +30,7 @@
                     <li><a href="{% url 'portfolio:logout' %}">Logout</a></li>
                     {% else %}
                     <li><a href="{% url 'portfolio:login' %}">Login</a></li>
+                    <li><a href="{% url 'portfolio:register' %}">Register</a></li>
                     {% endif %}
                 </ul>
                 {% block header %}

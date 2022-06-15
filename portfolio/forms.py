@@ -42,3 +42,8 @@ class ProjectSmallForm(ModelForm):
     class Meta:
         model = Project_small
         fields = '__all__'
+
+class NewsForm(ModelForm):
+    class Meta:
+        model = News
+        fields = '__all__'
