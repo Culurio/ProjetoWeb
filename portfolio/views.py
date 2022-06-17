@@ -18,7 +18,7 @@ def home_page_view(request):
 
 def licenciatura_page_view(request):
     context = {
-        'cadeiras':Subject.objects.all().order_by('rank','year','semester')
+        'cadeiras':Subject.objects.all().order_by('year','semester')
     }
     return render(request, 'portfolio/licenciatura.html',context)
 
