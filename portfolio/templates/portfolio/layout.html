@@ -29,8 +29,8 @@
                     {% if request.user.is_authenticated %}
                     <li><a href="{% url 'portfolio:logout' %}">Logout</a></li>
                     {% else %}
-                    <li><a href="{% url 'portfolio:login' %}">Login</a></li>
-                    <li><a href="{% url 'portfolio:register' %}">Register</a></li>
+                    <li><a href="{% url 'portfolio:login' %}" style="background-color:#6b1423; border-radius: 20px;">Login</a></li>
+                    <li><a href="{% url 'portfolio:register' %}" style="background-color:#6b1423; border-radius: 20px;">Register</a></li>
                     {% endif %}
                 </ul>
                 {% block header %}

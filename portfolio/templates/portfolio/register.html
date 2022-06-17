@@ -4,13 +4,13 @@
 <link rel="stylesheet" href="{% static 'portfolio/css/login.css' %}">
 {% endblock %}
 {% block header %}
-<div class="welcome-text">Login</div>
+<div class="welcome-text">Register</div>
 {% endblock %}
 {% block main %}
 <form action="" method="POST" enctype="multipart/form-data">
 
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" class="button" value="Login">
+    <button class="button" style="vertical-align:middle" type="submit"><span>Register </span></button>
 </form>
 {% endblock %}

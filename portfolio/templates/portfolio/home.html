@@ -4,6 +4,7 @@
 {% block extrahead %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'portfolio/css/home.css' %}">
+<link rel="stylesheet" href="{% static 'portfolio/css/timeline.css' %}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{% static 'portfolio/css/subject_box.css' %}">
@@ -14,22 +15,51 @@
 <!--<img src="{% static '/portfolio/images/claudio-photo.png' %}" alt="Banner Photo" height="120" width="120"> -->
 {% endblock %}
 {% block main %}
-<div class="home-container">
-    <div>
-        <img src="{% static '/portfolio/images/hero-image.png' %}" alt="Banner Photo">
-    </div>
-    <div>
-        <h2>Sobre mim:</h2>
-        <p>Sou um aluno de engenharia informatica atualmente no segundo ano do curso, gosto de programar e de muitas
-            coisas relacionadas ao mundo da
-            informatica, isto tudo começou desde novo mas com uma ideia muito abstrata do que era ser um programador, as
-            referencias que tinha sobre
-            programação vinham de filmes como o matrix e do meu irmão que tambem é programador, agora tenho uma ideia
-            muito melhor e adoro o que faço.
 
-        </p>
+<div class="section">
+    <h1>Sobre Mim:</h1>
+    <p>Olá sou o Cláudio atualmente estou a estudar engenharia informática na Universidade Lusófona de Humanidades e
+        Tecnologias.<br>
+        Sempre estive ligado ao mundo informático e consequentemente à programação, desde que comecei a programar
+        desenvolvi imenso a minha
+        capacidade e ajudou me imenso a ser um melhor programador.
+    </p>
+    <div class="video-container">
+        <div class="color-overlay"></div>
+        <video autoplay loop muted>
+            <source src="{% static 'portfolio/videos/background-video.mp4' %}" type="video/mp4">
+        </video>
     </div>
 </div>
+<div style="padding-bottom:20px ;"></div>
+<h1>Timeline da minha vida</h1>
+<div class="timeline">
+    <div class="container right">
+        <div class="content">
+            <h2>11/09/2001</h2>
+            <p>Queda das torres</p>
+        </div>
+    </div>
+    <div class="container left">
+        <div class="content">
+            <h2>11/09/2002</h2>
+            <p>Nascimento do Cláudio Costa(eu)</p>
+        </div>
+    </div>
+    <div class="container right">
+        <div class="content">
+            <h2>2017-2020</h2>
+            <p>Escola Secundária De Santo André</p>
+        </div>
+    </div>
+    <div class="container left">
+        <div class="content">
+            <h2>2020-atualmente</h2>
+            <p>Universidade Lusófona de Humanidades e Tecnologias</p>
+        </div>
+    </div>
+</div>
+
 <div class="subjects-box" style="margin-bottom:30px ;">
     <h1>Competências </h1>
     {% for skill in skills %}
@@ -67,8 +97,17 @@
     <a href="https://www.instagram.com/clurio_costa/"><i class="fa fa-instagram"
             style="font-size:50px;color:white;padding-left: 20px;"></i></a>
     <a href="https://www.youtube.com/channel/UCTfTfOQJVHAq2dsGHl4uHyg"><i class="fa fa-youtube-play"
-            style="font-size:50px;color:white;padding-left: 20px;"></i></a>
+            style="font-size:50px;color:white;padding-left: 20px;"></i></a><br>
+    <a href="https://www.ulusofona.pt/"><img src="{% static '/portfolio/images/lusofona.png' %}"
+            style="font-size:50px;color:white;padding-left: 20px; height: 50px;"></i></a>
 </div>
-
+<div class="contacts-container">
+    <figure align="center">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1555.6222128157742!2d-9.153529060154746!3d38.75809750519268!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1932fc16a21773%3A0xbb910a0db57ce114!2sUniversidade%20Lus%C3%B3fona%20de%20Humanidades%20e%20Tecnologias!5e0!3m2!1sen!2spt!4v1655469275215!5m2!1sen!2spt"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </figure>
+</div>
 
 {% endblock %}

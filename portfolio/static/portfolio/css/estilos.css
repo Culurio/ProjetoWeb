@@ -1,4 +1,4 @@
-* {
+*{
   font-family: 'Ubuntu', sans-serif;
   box-sizing: border-box;
   border: 0;
@@ -15,7 +15,7 @@
 
 .top-bar {
   height: 120px;
-  background: url("/static/portfolio/images/banner.webp");
+  background: url("/portfolio/static/portfolio/images/banner.webp");
   background-size: cover;
   grid-area: nav;
 }
