@@ -18,7 +18,7 @@ def home_page_view(request):
 
 def licenciatura_page_view(request):
     context = {
-        'cadeiras':Subject.objects.all().order_by('rank','year','semester')[:3],
+        'cadeiras':Subject.objects.all().order_by('rank','year','semester')
     }
     return render(request, 'portfolio/licenciatura.html',context)
 
@@ -117,7 +117,7 @@ def view_delete_tfc(request, project_id):
 
 def projects_page_view(request):
     context = {
-        'projects_small':Project_small.objects.all()[:3],
+        'projects_small':Project_small.objects.all(),
         'projects_big':Project_big.objects.all()[:6],
     }
     return render(request, 'portfolio/projects.html',context)
