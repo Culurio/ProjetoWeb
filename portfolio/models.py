@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class Person(models.Model):
 
     name = models.CharField(max_length=50)
-    linkdin = models.URLField()
+    linkdin = models.URLField(blank=True, null=True)
     class Meta:
         abstract = True
 
@@ -20,7 +20,7 @@ class Teacher(Person,models.Model):
 class Student(Person,models.Model):
 
     portfolio = models.URLField()
-    github = models.URLField()
+    github = models.URLField(blank=True, null=True)
 
 class SkillType(models.Model):
     name = name = models.CharField(max_length=50)
